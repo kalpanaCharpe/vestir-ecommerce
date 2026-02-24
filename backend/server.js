@@ -20,7 +20,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://vestir-ecommerce.vercel.app/",
+  origin: "https://vestir-ecommerce.vercel.app",
   credentials: true
 }));
 app.use(express.json());
