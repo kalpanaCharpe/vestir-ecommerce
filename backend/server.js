@@ -19,10 +19,22 @@ dotenv.config();
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+  "https://vestir-ecommerce.vercel.app",
+  "https://vestir-ecommerce-5n614sj0f-kalpana-charpes-projects.vercel.app"
+];
+
 app.use(cors({
-  origin: "https://vestir-ecommerce.vercel.app",
+  origin: function(origin, callback){
+    if(!origin || allowedOrigins.includes(origin)){
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 // app.use(express.json()); // <-- parses JSON bodies
